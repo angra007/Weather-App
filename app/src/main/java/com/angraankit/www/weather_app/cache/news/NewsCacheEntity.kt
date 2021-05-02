@@ -12,24 +12,11 @@ data class NewsCacheEntity (
     @ColumnInfo(name = "title")
     var title : String?,
 
-    @Embedded
-    var user : UserCacheEntity?,
+    @ColumnInfo(name = "description")
+    var description : String?,
 
-    @ColumnInfo(name = "cover")
-    var cover : String?
+    @ColumnInfo(name = "url")
+    var url : String?
 
 )
 
-@Entity(tableName = "User")
-data class UserCacheEntity (
-
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "name")
-    var name : String,
-
-    @ColumnInfo(name = "avatar")
-    var avatar : String?,
-
-    @ColumnInfo(name = "fullname")
-    var fullname : String?
-)
