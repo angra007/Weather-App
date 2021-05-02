@@ -4,32 +4,25 @@ import com.google.gson.annotations.SerializedName
 
 
 data class WeatherResponse (
-    @SerializedName("id")
-    val id : String?,
+    @SerializedName("weather")
+    val weather : List <NetworkWeather?>,
 
-    @SerializedName("title")
-    val title : String?,
-
-    @SerializedName("user")
-    val user : UserNetworkEntity?,
-
-    @SerializedName("cover")
-    val cover : String?
+    @SerializedName("main")
+    val main : NetworkMain
 )
 
-
-data class StoriesNetworkEntity (
-    @SerializedName("stories")
-    val stories : List<WeatherResponse>?
+data class NetworkWeather (
+    @SerializedName("icon")
+    val icon : String?
 )
 
-data class UserNetworkEntity (
-    @SerializedName("name")
-    val name : String?,
+data class NetworkMain (
+    @SerializedName("temp")
+    val temp : String?,
 
-    @SerializedName("avatar")
-    val avatar : String?,
+    @SerializedName("temp_min")
+    val temp_min : String?,
 
-    @SerializedName("fullname")
-    val fullname : String?
+    @SerializedName("temp_max")
+    val temp_max : String?
 )

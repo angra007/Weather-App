@@ -1,54 +1,38 @@
 package com.angraankit.www.weather_app.network.weather
 
-import com.angraankit.www.weather_app.model.Story
-import com.angraankit.www.weather_app.model.User
+import com.angraankit.www.weather_app.model.Weather
 import com.angraankit.www.weather_app.utill.EntityMapper
 import javax.inject.Inject
 
 class WeatherNetworkMapper
     @Inject constructor (
-        val userNetworkMapper : UserNetworkMapper
-    ) : EntityMapper<WeatherResponse, Story>{
+    ) : EntityMapper<WeatherResponse, Weather>{
 
-    override fun getEntityFromModel(story: Story): WeatherResponse {
+    override fun getEntityFromModel(story: Weather): WeatherResponse {
+        val networkWeather = NetworkWeather(
+            icon = story.iconId
+        )
+
+        val networkMain = NetworkMain (
+            temp = story.temp,
+            temp_max = story.maxTemp,
+            temp_min =  story.minTemp
+        )
+
+        val weatherList = arrayListOf(networkWeather)
+
         return WeatherResponse(
-            id = story.id,
-            title = story.title,
-            user = story.user?.let { userNetworkMapper.getEntityFromModel(model = it) },
-            cover = story.cover
+            weather = weatherList,
+            main = networkMain
         )
     }
 
-    override fun getModelFromEntity(model: WeatherResponse): Story {
-        return Story(
-            id = model.id,
-            title = model.title,
-            user = model.user?.let { userNetworkMapper.getModelFromEntity(model = it) },
-            cover = model.cover
-        )
-    }
-
-    fun mapFromEntityList (entities : StoriesNetworkEntity) : List <Story>? {
-        return entities.stories?.map { getModelFromEntity(it) }
-    }
-}
-
-class UserNetworkMapper
-@Inject
-constructor() : EntityMapper <UserNetworkEntity, User> {
-    override fun getEntityFromModel(model: User): UserNetworkEntity {
-        return UserNetworkEntity(
-            name = model.name,
-            avatar = model.avatar,
-            fullname = model.fullname
-        )
-    }
-
-    override fun getModelFromEntity(model: UserNetworkEntity): User {
-        return User(
-            name = model.name,
-            avatar = model.avatar,
-            fullname = model.fullname
+    override fun getModelFromEntity(model: WeatherResponse): Weather {
+        return Weather(
+            iconId = model.weather.first()?.icon,
+            minTemp = model.main.temp,
+            maxTemp = model.main.temp_max,
+            temp = model.main.temp
         )
     }
 }

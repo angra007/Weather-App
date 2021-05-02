@@ -1,8 +1,6 @@
 package com.angraankit.www.weather_app.network.news
 
 import com.angraankit.www.weather_app.model.News
-import com.angraankit.www.weather_app.model.Story
-import com.angraankit.www.weather_app.network.weather.StoriesNetworkEntity
 import com.angraankit.www.weather_app.utill.EntityMapper
 import org.w3c.dom.Entity
 import javax.inject.Inject
