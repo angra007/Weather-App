@@ -2,6 +2,7 @@ package com.angraankit.www.weather_app.repository
 
 import com.angraankit.www.weather_app.cache.news.NewsCacheMapper
 import com.angraankit.www.weather_app.cache.news.NewsDao
+import com.angraankit.www.weather_app.di.NewsKey
 import com.angraankit.www.weather_app.network.news.NewsNetworkMapper
 import com.angraankit.www.weather_app.network.news.NewsService
 import com.angraankit.www.weather_app.network.weather.WeatherService
@@ -13,6 +14,7 @@ constructor(
     private val newsService: NewsService,
     private val newsNetworkMapper: NewsNetworkMapper,
     private val newsDao: NewsDao,
-    private val newsCacheMapper: NewsCacheMapper
+    private val newsCacheMapper: NewsCacheMapper,
+    @NewsKey private val apiKey : String
 ) {
 }
