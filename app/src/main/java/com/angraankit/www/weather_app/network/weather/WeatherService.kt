@@ -9,11 +9,11 @@ interface WeatherService {
     suspend fun getWeather (
         @Query ("q") query : String,
         @Query ("appid") appId : String
-    )
+    ) : WeatherResponse
 
     suspend fun getForecast (
         @Query ("q" ) query : String,
         @Query ("appid") appId : String
-    )
+    ) : ForecastResponse
 
 }

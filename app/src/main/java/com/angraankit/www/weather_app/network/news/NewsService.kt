@@ -9,6 +9,6 @@ interface NewsService {
     suspend fun getNews (
         @Query("q") query : String,
         @Query("apiKey") apiKey : String,
-    )
+    ) : NetworkNews
 
 }

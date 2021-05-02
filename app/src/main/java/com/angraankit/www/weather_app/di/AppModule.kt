@@ -14,13 +14,13 @@ object AppModule {
     @Provides
     @WeatherKey
     fun provideWeatherKey () : String {
-        return ""
+        return "99b00db2e67a4e43bbec04380469ec7c"
     }
 
     @Singleton
     @Provides
     @NewsKey
-    fun provideNetworkKey () : String {
+    fun provideNewsKey () : String {
         return ""
     }
 }
