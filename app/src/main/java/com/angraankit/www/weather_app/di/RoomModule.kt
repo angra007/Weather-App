@@ -2,7 +2,7 @@ package com.angraankit.www.weather_app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.angraankit.www.weather_app.cache.StoriesDao
+import com.angraankit.www.weather_app.cache.news.NewsDao
 import com.angraankit.www.weather_app.cache.StoriesDatabase
 import dagger.Module
 import dagger.Provides
@@ -29,7 +29,7 @@ object RoomModule  {
 
     @Provides
     @Singleton
-    fun provideStoriesDao (stroriesDatabase: StoriesDatabase) : StoriesDao {
+    fun provideStoriesDao (stroriesDatabase: StoriesDatabase) : NewsDao {
         return stroriesDatabase.storiesDao()
     }
 }

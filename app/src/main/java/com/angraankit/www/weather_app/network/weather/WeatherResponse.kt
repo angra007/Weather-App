@@ -1,9 +1,9 @@
-package com.angraankit.www.weather_app.network
+package com.angraankit.www.weather_app.network.weather
 
 import com.google.gson.annotations.SerializedName
 
 
-data class StorieNetworkEntity (
+data class WeatherResponse (
     @SerializedName("id")
     val id : String?,
 
@@ -20,7 +20,7 @@ data class StorieNetworkEntity (
 
 data class StoriesNetworkEntity (
     @SerializedName("stories")
-    val stories : List<StorieNetworkEntity>?
+    val stories : List<WeatherResponse>?
 )
 
 data class UserNetworkEntity (

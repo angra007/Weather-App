@@ -1,7 +1,7 @@
 package com.angraankit.www.weather_app.di
 
-import com.angraankit.www.weather_app.network.NewsService
-import com.angraankit.www.weather_app.network.WeatherService
+import com.angraankit.www.weather_app.network.news.NewsService
+import com.angraankit.www.weather_app.network.weather.WeatherService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

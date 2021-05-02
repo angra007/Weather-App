@@ -1,17 +1,17 @@
-package com.angraankit.www.weather_app.network
+package com.angraankit.www.weather_app.network.weather
 
 import com.angraankit.www.weather_app.model.Story
 import com.angraankit.www.weather_app.model.User
 import com.angraankit.www.weather_app.utill.EntityMapper
 import javax.inject.Inject
 
-class StoriesNetworkMapper
+class WeatherNetworkMapper
     @Inject constructor (
         val userNetworkMapper : UserNetworkMapper
-    ) : EntityMapper<StorieNetworkEntity, Story>{
+    ) : EntityMapper<WeatherResponse, Story>{
 
-    override fun getEntityFromModel(story: Story): StorieNetworkEntity {
-        return StorieNetworkEntity(
+    override fun getEntityFromModel(story: Story): WeatherResponse {
+        return WeatherResponse(
             id = story.id,
             title = story.title,
             user = story.user?.let { userNetworkMapper.getEntityFromModel(model = it) },
@@ -19,7 +19,7 @@ class StoriesNetworkMapper
         )
     }
 
-    override fun getModelFromEntity(model: StorieNetworkEntity): Story {
+    override fun getModelFromEntity(model: WeatherResponse): Story {
         return Story(
             id = model.id,
             title = model.title,

@@ -1,4 +1,4 @@
-package com.angraankit.www.weather_app.network
+package com.angraankit.www.weather_app.network.weather
 
 import retrofit2.http.GET
 import retrofit2.http.Query

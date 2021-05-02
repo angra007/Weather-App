@@ -1,9 +1,9 @@
-package com.angraankit.www.weather_app.cache
+package com.angraankit.www.weather_app.cache.news
 
 import androidx.room.*
 
 @Entity(tableName = "Stories", indices = [Index(value = ["id"], unique = true)])
-data class StoriesCacheEntity (
+data class NewsCacheEntity (
 
     @PrimaryKey
     @ColumnInfo(name = "id")

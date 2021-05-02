@@ -1,18 +1,18 @@
-package com.angraankit.www.weather_app.cache
+package com.angraankit.www.weather_app.cache.news
 
 import com.angraankit.www.weather_app.model.Story
 import com.angraankit.www.weather_app.model.User
 import com.angraankit.www.weather_app.utill.EntityMapper
 import javax.inject.Inject
 
-data class StoriesCacheMapper
+data class NewsCacheMapper
 @Inject constructor(
     var userCacheMapper: UserCacheMapper
-) : EntityMapper <StoriesCacheEntity, Story> {
-    override fun getEntityFromModel(model: Story): StoriesCacheEntity? {
+) : EntityMapper <NewsCacheEntity, Story> {
+    override fun getEntityFromModel(model: Story): NewsCacheEntity? {
         return model.id?.let {
-            StoriesCacheEntity(
-                id = it ,
+            NewsCacheEntity(
+                id = it,
                 title = model.title,
                 user = model.user?.let { userCacheMapper.getEntityFromModel(model = it) },
                 cover = model.cover
@@ -20,7 +20,7 @@ data class StoriesCacheMapper
         }
     }
 
-    override fun getModelFromEntity(model: StoriesCacheEntity): Story {
+    override fun getModelFromEntity(model: NewsCacheEntity): Story {
         return Story(
             id = model.id,
             title = model.title,
@@ -29,7 +29,7 @@ data class StoriesCacheMapper
         )
     }
 
-    fun mapFromEntityList (entities : List<StoriesCacheEntity>) : List <Story> {
+    fun mapFromEntityList (entities : List<NewsCacheEntity>) : List <Story> {
         return entities.map { getModelFromEntity(it) }
     }
 }
