@@ -3,7 +3,7 @@ package com.angraankit.www.weather_app.di
 import android.content.Context
 import androidx.room.Room
 import com.angraankit.www.weather_app.cache.news.NewsDao
-import com.angraankit.www.weather_app.cache.StoriesDatabase
+import com.angraankit.www.weather_app.cache.WeatherDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,11 +17,11 @@ object RoomModule  {
 
     @Provides
     @Singleton
-    fun provideStoriesDb (@ApplicationContext context: Context) : StoriesDatabase {
+    fun provideStoriesDb (@ApplicationContext context: Context) : WeatherDatabase {
         return Room.databaseBuilder (
             context,
-            StoriesDatabase::class.java,
-            StoriesDatabase.DATABASE_NAME
+            WeatherDatabase::class.java,
+            WeatherDatabase.DATABASE_NAME
         )
             .fallbackToDestructiveMigration()
             .build()
@@ -29,7 +29,7 @@ object RoomModule  {
 
     @Provides
     @Singleton
-    fun provideStoriesDao (stroriesDatabase: StoriesDatabase) : NewsDao {
-        return stroriesDatabase.storiesDao()
+    fun provideStoriesDao (stroriesDatabase: WeatherDatabase) : NewsDao {
+        return stroriesDatabase.newsDao()
     }
 }

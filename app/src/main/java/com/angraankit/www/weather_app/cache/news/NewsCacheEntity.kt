@@ -2,9 +2,8 @@ package com.angraankit.www.weather_app.cache.news
 
 import androidx.room.*
 
-@Entity(tableName = "Stories", indices = [Index(value = ["id"], unique = true)])
+@Entity(tableName = "News", indices = [Index(value = ["id"], unique = true)])
 data class NewsCacheEntity (
-
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id : String,
@@ -17,6 +16,5 @@ data class NewsCacheEntity (
 
     @ColumnInfo(name = "url")
     var url : String?
-
 )
 

@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.angraankit.www.weather_app.model.Story
-import com.angraankit.www.weather_app.repository.MainRepository
+import com.angraankit.www.weather_app.repository.NewsRepository
+import com.angraankit.www.weather_app.repository.WeatherRepository
 import com.angraankit.www.weather_app.utill.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class MainViewModel
     @Inject
     constructor(
-        private val mainRepository: MainRepository
+        private val weatherRepository: WeatherRepository,
+        private val newsRepository: NewsRepository
     ) : ViewModel() {
 
     private val _datastate : MutableLiveData<DataState<List<Story>>> = MutableLiveData()
@@ -27,17 +29,17 @@ class MainViewModel
         get() = _datastate
 
     fun setStateEvent (mainStateEvent: MainStateEvent) {
-        viewModelScope.launch {
-            when (mainStateEvent) {
-                is MainStateEvent.GetStories -> {
-                    mainRepository.getStories()
-                        .onEach { dataState ->
-                            _datastate.value = dataState
-                        }
-                        .launchIn(viewModelScope)
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            when (mainStateEvent) {
+//                is MainStateEvent.GetStories -> {
+//                    mainRepository.getStories()
+//                        .onEach { dataState ->
+//                            _datastate.value = dataState
+//                        }
+//                        .launchIn(viewModelScope)
+//                }
+//            }
+//        }
     }
 
 }

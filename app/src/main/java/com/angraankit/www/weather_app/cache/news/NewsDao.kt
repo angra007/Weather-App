@@ -10,9 +10,9 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert (newsCacheEntity: NewsCacheEntity) : Long
 
-    @Query("SELECT * FROM stories")
-    suspend fun getStories () : List<NewsCacheEntity>
+    @Query("SELECT * FROM news")
+    suspend fun getNews () : List<NewsCacheEntity>
 
-    @Query("DELETE FROM stories")
+    @Query("DELETE FROM news")
     suspend fun deleteAll ()
 }
