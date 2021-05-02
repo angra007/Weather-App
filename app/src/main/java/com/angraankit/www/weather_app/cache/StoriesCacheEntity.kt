@@ -5,7 +5,7 @@ import androidx.room.*
 @Entity(tableName = "Stories", indices = [Index(value = ["id"], unique = true)])
 data class StoriesCacheEntity (
 
-    @PrimaryKey (autoGenerate = false)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     var id : String,
 
@@ -22,7 +22,8 @@ data class StoriesCacheEntity (
 
 @Entity(tableName = "User")
 data class UserCacheEntity (
-    @PrimaryKey (autoGenerate = false)
+
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "name")
     var name : String,
 

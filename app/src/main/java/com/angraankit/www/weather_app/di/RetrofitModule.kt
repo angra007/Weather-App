@@ -1,6 +1,7 @@
 package com.angraankit.www.weather_app.di
 
-import com.angraankit.www.weather_app.network.StoriesNetworkService
+import com.angraankit.www.weather_app.network.NewsService
+import com.angraankit.www.weather_app.network.WeatherService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -23,18 +24,36 @@ object RetrofitModule  {
 
     @Singleton
     @Provides
-    fun provideRetrofit (gson: Gson) : Retrofit.Builder {
+    @WeatherRetrofitBuilder
+    fun provideWeatherRetrofit (gson: Gson) : Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl("https://www.wattpad.com/api/v3/")
+            .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
     @Provides
-    fun provideStoriesService (retrofit: Retrofit.Builder) : StoriesNetworkService {
+    @NewsRetrofitBuilder
+    fun provideNewsRetrofit (gson: Gson) : Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl("https://newsapi.org/v2/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+    }
+
+    @Singleton
+    @Provides
+    fun provideStoriesService (@WeatherRetrofitBuilder retrofit: Retrofit.Builder) : WeatherService {
         return retrofit
             .build()
-            .create(StoriesNetworkService::class.java)
+            .create(WeatherService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkService (@NewsRetrofitBuilder retrofit: Retrofit.Builder) : NewsService {
+        return retrofit
+            .build()
+            .create(NewsService::class.java)
     }
 
 }
