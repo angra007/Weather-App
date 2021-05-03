@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angraankit.www.weather_app.R
-import com.angraankit.www.weather_app.model.Story
 import com.angraankit.www.weather_app.ui.adapter.StoriesListAdapter
 import com.angraankit.www.weather_app.utill.DataState
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,28 +29,28 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun subscribeObservers () {
-        viewModel.dataState.observe(viewLifecycleOwner, Observer { dateState ->
-            when (dateState) {
-                is DataState.Success<List<Story>> -> {
-                    stopLoading ()
-                    refreshList(dateState.data)
-                    displaySuccess ()
-                }
-
-                is DataState.Error -> {
-                    stopLoading ()
-                }
-
-                is DataState.Loading -> {
-                    startLoading ()
-                    dateState.data?.let {
-                        refreshList (
-                            list = it
-                        )
-                    }
-                }
-            }
-        })
+//        viewModel.dataState.observe(viewLifecycleOwner, Observer { dateState ->
+//            when (dateState) {
+//                is DataState.Success<List<Story>> -> {
+//                    stopLoading ()
+//                    refreshList(dateState.data)
+//                    displaySuccess ()
+//                }
+//
+//                is DataState.Error -> {
+//                    stopLoading ()
+//                }
+//
+//                is DataState.Loading -> {
+//                    startLoading ()
+//                    dateState.data?.let {
+//                        refreshList (
+//                            list = it
+//                        )
+//                    }
+//                }
+//            }
+//        })
     }
 
     private fun startLoading () {
@@ -75,7 +74,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         stories_recycler_view.adapter = storiesListAdapter
     }
 
-    private fun refreshList (list : List<Story>) {
-        storiesListAdapter.refreshList(list)
-    }
+//    private fun refreshList (list : List<Story>) {
+//        storiesListAdapter.refreshList(list)
+//    }
 }

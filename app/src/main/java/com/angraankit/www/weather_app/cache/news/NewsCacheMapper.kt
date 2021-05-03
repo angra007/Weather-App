@@ -1,8 +1,6 @@
 package com.angraankit.www.weather_app.cache.news
 
 import com.angraankit.www.weather_app.model.News
-import com.angraankit.www.weather_app.model.Story
-import com.angraankit.www.weather_app.model.User
 import com.angraankit.www.weather_app.network.news.NetworkNews
 import com.angraankit.www.weather_app.network.news.NewtorkArticles
 import com.angraankit.www.weather_app.utill.EntityMapper

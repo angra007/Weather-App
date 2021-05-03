@@ -21,6 +21,6 @@ object AppModule {
     @Provides
     @NewsKey
     fun provideNewsKey () : String {
-        return ""
+        return "4f6fb5550c46410f8d7870cd049cdbf6"
     }
 }

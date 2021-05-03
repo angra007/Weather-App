@@ -35,9 +35,10 @@ constructor(
             )
             newsNetworkMapper.mapFromEntityList(networkNews)?.let {
                 emit(DataState.Success(it))
-            } ?: emit(DataState.Success(arrayListOf()))
+            } ?: emit(DataState.Success(arrayListOf<News>()))
         } catch (e : Exception) {
             emit(DataState.Error(e))
         }
     }
 }
+

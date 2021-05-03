@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.angraankit.www.weather_app.model.Story
 import com.angraankit.www.weather_app.repository.NewsRepository
 import com.angraankit.www.weather_app.repository.WeatherRepository
 import com.angraankit.www.weather_app.utill.DataState
@@ -24,9 +23,9 @@ class MainViewModel
         private val newsRepository: NewsRepository
     ) : ViewModel() {
 
-    private val _datastate : MutableLiveData<DataState<List<Story>>> = MutableLiveData()
-    val dataState : LiveData<DataState<List<Story>>>
-        get() = _datastate
+//    private val _datastate : MutableLiveData<DataState<List<Story>>> = MutableLiveData()
+//    val dataState : LiveData<DataState<List<Story>>>
+//        get() = _datastate
 
     fun setStateEvent (mainStateEvent: MainStateEvent) {
 //        viewModelScope.launch {
