@@ -9,6 +9,8 @@ import com.angraankit.www.weather_app.repository.WeatherRepository
 import com.angraankit.www.weather_app.utill.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -23,28 +25,40 @@ class MainViewModel
         private val newsRepository: NewsRepository
     ) : ViewModel() {
 
-//    private val _datastate : MutableLiveData<DataState<List<Story>>> = MutableLiveData()
-//    val dataState : LiveData<DataState<List<Story>>>
-//        get() = _datastate
 
-    fun setStateEvent (mainStateEvent: MainStateEvent) {
-//        viewModelScope.launch {
-//            when (mainStateEvent) {
-//                is MainStateEvent.GetStories -> {
-//                    mainRepository.getStories()
-//                        .onEach { dataState ->
-//                            _datastate.value = dataState
-//                        }
-//                        .launchIn(viewModelScope)
-//                }
-//            }
-//        }
+    fun setStateEvent (mainStateEvent: MainStateEvent, city : String) {
+        viewModelScope.launch {
+            when (mainStateEvent) {
+                is MainStateEvent.GetWeather -> {
+                    weatherRepository.getWeather(city)
+                        .onEach {
+                            System.out.println(it)
+                        }
+                        .launchIn(viewModelScope)
+                }
+
+                is MainStateEvent.GetForecast -> {
+                    weatherRepository.getForecast(city)
+                        .onEach {
+                            System.out.println(it)
+                        }.launchIn(viewModelScope)
+                }
+
+                is MainStateEvent.GetNews -> {
+                    newsRepository.getNews(city)
+                        .onEach {
+                            System.out.println(it)
+                        }.launchIn(viewModelScope)
+                }
+            }
+        }
     }
-
 }
 
 sealed class MainStateEvent {
-    object GetStories : MainStateEvent()
+    object GetWeather : MainStateEvent()
+    object GetForecast : MainStateEvent()
+    object GetNews : MainStateEvent()
 }
 
 

@@ -11,6 +11,7 @@ interface WeatherService {
         @Query ("appid") appId : String
     ) : WeatherResponse
 
+    @GET("forecast")
     suspend fun getForecast (
         @Query ("q" ) query : String,
         @Query ("appid") appId : String

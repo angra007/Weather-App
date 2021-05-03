@@ -52,10 +52,8 @@ constructor(
                 weather= weatherNetworkMapper.getModelFromEntity(networkWeather)
             }
             emit(DataState.Success(weather))
-
         } catch ( e : Exception) {
             emit(DataState.Error(e))
         }
     }
-
 }
